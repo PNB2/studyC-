@@ -1,65 +1,61 @@
 using System;
-namespace VietTutsCsharp
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+// test case 1: x2 - 49x - 50 = 0 -> x1 = 50 x2 =-1
+// test case 2: Giải phương trình x2 – 4x +4 = 0 -> x1 = x2 = 2
+// test case 3: 3x2 + 2x + 5 = 0 -> vo nghiem
+namespace bt2
 {
-    class Program
+    internal class Program
     {
         static void Main(string[] args)
         {
-            float a, b, c;
-            Console.Write("Nhap he so bac 2, a = ");
-            a = float.Parse(Console.ReadLine());
-            Console.Write("Nhap he so bac 1, b = ");
-            b = float.Parse(Console.ReadLine());
-            Console.Write("Nhap so hang tu do, c = ");
-            c = float.Parse(Console.ReadLine());
-            giaiPTBac2(a, b, c);
- 
-            Console.WriteLine();
-            Console.ReadKey();
-        }
- 
- 
-        /**
-          * giai phuong trinh bac 2: ax2 + bx + c = 0
-          * 
-          * @param a: he so bac 2
-          * @param b: he so bac 1
-          * @param c: so hang tu do
-          */
-        static void giaiPTBac2(float a, float b, float c)
-        {
-            // kiem tra cac he so
+            Console.Write("Nhap so a = ");
+            Double a = double.Parse(Console.ReadLine());
+            Console.Write("Nhap so b = ");
+            Double b = double.Parse(Console.ReadLine());
+            Console.Write("Nhap so c = ");
+            Double c = double.Parse(Console.ReadLine());
+
             if (a == 0)
             {
                 if (b == 0)
                 {
-                    Console.WriteLine("Phuong trinh vo nghiem!");
+                    if (c == 0)
+                    {
+                        Console.WriteLine("Phuong trinh vo nghiem");
+                    }
+                    else
+                    {
+                        Console.WriteLine("Phuong trinh vo so nghiem");
+                    }
                 }
                 else
                 {
-                    Console.WriteLine("Phuong trinh co mot nghiem: x = {0}", (-c / b));
+                    Double x = -c / b;
+                    Console.WriteLine("Phuong trinh co nghiem duy nhat x = " + Math.Round(x,2));
                 }
-                return;
-            }
-            // tinh delta
-            float delta = b * b - 4 * a * c;
-            float x1;
-            float x2;
-            // tinh nghiem
-            if (delta > 0)
-            {
-                x1 = (float)((-b + Math.Sqrt(delta)) / (2 * a));
-                x2 = (float)((-b - Math.Sqrt(delta)) / (2 * a));
-                Console.WriteLine("Phuong trinh co 2 nghiem la: x1 = {0} va x2 = {1}", x1, x2);
-            }
-            else if (delta == 0)
-            {
-                x1 = (-b / (2 * a));
-                Console.WriteLine("Phong trinh co nghiem kep: x1 = x2 = {0}", x1);
             }
             else
             {
-                Console.WriteLine("Phuong trinh vo nghiem!");
+                Double delta = Math.Pow(b, 2) - (4 * a * c);
+                Double x1, x2;
+                if (delta < 0)
+                {
+                    Console.WriteLine("Phuong trinh vo nghiem");
+                } else if (delta == 0)
+                {
+                    x1 = x2 = (-b / (2 * a));
+                    Console.WriteLine("Phuong trinh nghiem kep: " + x1);
+                }
+                else
+                {
+                    x1 = (-b + Math.Sqrt(delta)) / (2 * a);
+                    x2 = (-b - Math.Sqrt(delta)) / (2 * a);
+                    Console.WriteLine("Phuong trinh co hai nghiem phan biet: x1 = {0} va x2 = {1}", x1,x2);
+                }
             }
         }
     }
